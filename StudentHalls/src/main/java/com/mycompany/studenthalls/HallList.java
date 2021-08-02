@@ -138,7 +138,7 @@ public class HallList implements Serializable{
     }
 
     /**
-     * Outputs all the studfnets in the vegan arrary
+     * Outputs all the students in the vegan ArrayList
      *
      * @return Returns all the students and owners in the list in an easy to
      * read format
@@ -151,7 +151,13 @@ public class HallList implements Serializable{
         }
         return output;
     }
-
+    
+      /**
+     * Outputs all the students in the disabled ArrayList
+     *
+     * @return Returns all the students and owners in the list in an easy to
+     * read format
+     */
     public String displayDisabled() {
         String output = "\n";
         for (int counter = 0; counter < DisabledRooms.size(); counter++) {
@@ -161,6 +167,12 @@ public class HallList implements Serializable{
         return output;
     }
 
+    /**
+     * Outputs all the students in the student ArrayList
+     *
+     * @return Returns all the students and owners in the list in an easy to
+     * read format
+     */
     public String displayStudents() {
         String output = "\n";
         for (int counter = 0; counter < StudentRooms.size(); counter++) {
@@ -170,6 +182,12 @@ public class HallList implements Serializable{
         return output;
     }
     
+    /**
+     * Outputs all the students in the staff ArrayList
+     *
+     * @return Returns all the students and owners in the list in an easy to
+     * read format
+     */
     public String displayStaff() {
         String output = "\n";
         for (int counter = 0; counter < StaffRooms.size(); counter++) {
@@ -178,7 +196,13 @@ public class HallList implements Serializable{
         }
         return output;
     }
-
+    
+    /**
+     * Outputs all the students in all ArrayLists
+     *
+     * @return Returns all the students and owners in the list in an easy to
+     * read format
+     */
     public String displayAllStudents() {
         String output = "\n";
         for (int counterVegan = 0; counterVegan < VeganRooms.size(); counterVegan++) {
@@ -201,6 +225,10 @@ public class HallList implements Serializable{
         return output;
     }
     
+    /**
+     * used my the main app to write data from all arraylist into a file to be used again
+     * @throws IOException 
+     */
     public void saveData() throws IOException {
       
         try {
@@ -219,11 +247,13 @@ public class HallList implements Serializable{
             }}
         
     
-    
+    /**
+     * used by the main app to read data from a file
+     */
     public void loadData(){
-    Object obj;
-    Student stu;
-    try {
+        Object obj;
+        Student stu;
+           try {
             FileInputStream fileIn = new FileInputStream("./BookedData.txt");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             obj = in.readObject();
