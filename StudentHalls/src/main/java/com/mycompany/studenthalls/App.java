@@ -60,6 +60,10 @@ public class App extends Application implements Serializable {
     private Button staff = new Button("Show booked staff");
     private Button help = new Button("Help");
 
+    /**
+     * used to create the layout of the UI and all elements such as the textboxs, buttons and lables 
+     * @param stage used to display all elements within boxx teh hbox and the vbox
+     */
     public void start(Stage stage) {
 
         hList = new HallList(100);
@@ -197,7 +201,10 @@ public class App extends Application implements Serializable {
         hList.saveData();
        outputResults.appendText("Serialized data is saved in ./BookedData.txt file");
     }
-    
+    /**
+     * allows the data to be loaded from a file
+     * @throws IOException 
+     */
     public void LoadData() throws IOException {
        hList.loadData();
        outputResults.appendText("Data has been loaded from the BookedData.txt file");
@@ -216,8 +223,6 @@ public class App extends Application implements Serializable {
         launch(args);
     }
     
-    public void help(){
-    
-    }
+
 
 }
