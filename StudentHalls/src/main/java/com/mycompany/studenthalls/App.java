@@ -62,6 +62,7 @@ public class App extends Application implements Serializable {
     private Button help = new Button("Help");
 
 
+
     /**
      * used to create the layout of the UI and all elements such as the textboxs, buttons and lables 
      * @param stage used to display all elements within boxx teh hbox and the vbox
@@ -154,6 +155,7 @@ public class App extends Application implements Serializable {
 
          Scene scene = new Scene(root, Color.web("#ffd9b3"));
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
 
     }
