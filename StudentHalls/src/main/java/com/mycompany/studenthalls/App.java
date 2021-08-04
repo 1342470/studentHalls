@@ -17,6 +17,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -60,18 +61,51 @@ public class App extends Application implements Serializable {
     private Button staff = new Button("Show booked staff");
     private Button help = new Button("Help");
 
+
     /**
      * used to create the layout of the UI and all elements such as the textboxs, buttons and lables 
      * @param stage used to display all elements within boxx teh hbox and the vbox
      */
     public void start(Stage stage) {
+        stage.setTitle("Student Halls room booking system");
+        hList = new HallList(100);
+        submit.setMaxWidth(250);
+        viewResults.setMaxWidth(250);
+        saveData.setMaxWidth(250);
+        loadData.setMaxWidth(250);
+        showVegans.setMaxWidth(250);
+        showDisabled.setMaxWidth(250);
+        showStudents.setMaxWidth(250);
+        clear.setMaxWidth(250);
+        staff.setMaxWidth(250);
+        help.setMaxWidth(250);
 
+
+        GridPane gridPane = new GridPane();
+        gridPane.add(submit, 0, 0, 1, 1);
+        gridPane.add(viewResults, 1, 0, 1, 1);
+        gridPane.add(saveData,2,0,1,1 );
+        gridPane.add(loadData,0,1,1,1 );
+        gridPane.add(showVegans,1,1,1,1 );
+        gridPane.add(showDisabled,2,1,1,1);
+        gridPane.add(showStudents,0,2,1,1 );
+        gridPane.add(clear,1,2,1,1 );
+        gridPane.add(staff,2,2,1,1 );
+        gridPane.add(help,1,3,1,1);
+        
+        
         hList = new HallList(100);
         HBox studentInfo = new HBox(10);
-        studentInfo.getChildren().addAll(studentDetails, firstNameLabel, NameField, sectSeparator, secondName, secondNameField, sectSeparator2, genderLable, genderField, sectSeparator3, vegan, veganField, sectSeparator4, disabledLable, disabledField, sectSeparator5,StaffLable,staffField,sectSeparator6, submit, viewResults, saveData,loadData,showVegans,showDisabled,showStudents,staff,help,clear);
+        studentInfo.getChildren().addAll(studentDetails, firstNameLabel, NameField, sectSeparator, secondName, secondNameField, sectSeparator2, genderLable, genderField, sectSeparator3, vegan, veganField, sectSeparator4, disabledLable, disabledField, sectSeparator5,StaffLable,staffField,sectSeparator6,gridPane);
+        
         VBox root = new VBox(10);
-        root.getChildren().addAll(studentDetails, firstNameLabel, NameField, sectSeparator, secondName, secondNameField, sectSeparator2, genderLable, genderField, sectSeparator3, vegan, veganField, sectSeparator4, disabledLable, disabledField, sectSeparator5,StaffLable,staffField,sectSeparator6, outputResults,submit, viewResults, saveData,loadData,showVegans,showDisabled,showStudents,staff,help,clear);
-        Scene scene = new Scene(root, Color.web("#ffd9b3"));
+        root.getChildren().addAll(studentDetails, firstNameLabel, NameField, sectSeparator, secondName, secondNameField, sectSeparator2, genderLable, genderField, sectSeparator3, vegan, veganField, sectSeparator4, disabledLable, disabledField, sectSeparator5,StaffLable,staffField,sectSeparator6, outputResults,gridPane);
+        
+
+
+        
+       
+        
 
         Font font = new Font("Vedana", 40);
         title.setFont(font);
@@ -82,11 +116,13 @@ public class App extends Application implements Serializable {
         submit.setAlignment(Pos.CENTER);
 
         root.setAlignment(Pos.CENTER);
+        gridPane.setAlignment(Pos.CENTER);
                 
                 
         root.setBackground(Background.EMPTY);
         
         outputResults.setMaxSize(1920, 1080);
+        outputResults.appendText("Welcome please enter the details your details in the form above, if you require anymore assistances please use the help button below, Once finished reading please press the Clear all text in text box button.");
 
         stage.setWidth(WIDTH);
         stage.setHeight(HEIGHT);
@@ -114,8 +150,10 @@ public class App extends Application implements Serializable {
             }
         });;
 
+        
+
+         Scene scene = new Scene(root, Color.web("#ffd9b3"));
         stage.setScene(scene);
-        stage.setTitle("Hall room booking system");
         stage.show();
 
     }
@@ -151,6 +189,7 @@ public class App extends Application implements Serializable {
             genderField.setText("");
             veganField.setText("");
             disabledField.setText("");
+            staffField.setText("");
             outputResults.appendText(Fname + " You have been succesfully been booked in ");
             outputResults.appendText("\n\n Booked in currently are ");
             outputResults.appendText(hList.displayVegans());
@@ -168,6 +207,7 @@ public class App extends Application implements Serializable {
             genderField.setText("");
             veganField.setText("");
             disabledField.setText("");
+            staffField.setText("");
             outputResults.appendText(Fname + " You have been succesfully been booked in ");
             outputResults.appendText("\n\n Booked in currently are ");
             outputResults.appendText(hList.displayVegans());
@@ -189,9 +229,10 @@ public class App extends Application implements Serializable {
 
         String s = String.valueOf(remained);
 
-        outputResults.appendText(s);
+        outputResults.appendText("the number of remainding rooms left are " + s);
 
     }
+
 
     /**
      * allows the all data send to the hlist to be saved to a file
